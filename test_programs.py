@@ -31,7 +31,7 @@ def simpleProgram():
       i += 1
     test_list.append(dict_obj)
 
-  with open('test_case1.csv','w') as f:
+  with open('test_case0.csv','w') as f:
     for i in test_list:
         f.write(str(list(i.keys())[0]) + "," + str(list(i.values())[0]))
         f.write("\n")
@@ -45,30 +45,30 @@ def simpleProgram():
 
 # Simple Test: Singular input & two branches
 def simpleProgram1():
-  dict_obj = keyValuePairs()
+  test_list = [] 
   i = 0
-  num_samples = 1000
+  num_samples = 10000
   while i < num_samples:
-    dict_obj.key = i
-    if (i < 500):
-      dict_obj.value = "1"
-      dict_obj.add(dict_obj.key, dict_obj.value)
-      if (i > 0 & i < 250):
-        dict_obj.value += "1"
-        dict_obj.value += "/"
-        dict_obj.add(dict_obj.key, dict_obj.value)
+    dict_obj = {}
+    val = random.randint(0,1000)
+    if (val < 500):
+      dict_obj[val] = "1;"
+      if (val < 250):
+        dict_obj[val] += "1"
         i+=1
       else:
-        dict_obj.value += "0"
-        dict_obj.value += "/"
-        dict_obj.add(dict_obj.key, dict_obj.value)
+        dict_obj[val] += "0"
         i+=1
 
     else:
-      dict_obj.value = "0"
-      dict_obj.value += "/"
-      dict_obj.add(dict_obj.key, dict_obj.value)
+      dict_obj[val] = "0"
       i += 1
+    test_list.append(dict_obj)
+
+  with open('test_case1.csv','w') as f:
+    for i in test_list:
+        f.write(str(list(i.keys())[0]) + "," + str(list(i.values())[0]))
+        f.write("\n")
 
   #for key in dict_obj:
     #print(key, ":", dict_obj[key])
@@ -188,6 +188,7 @@ def simpleProgram4():
 
 def main():
     simpleProgram()
+    simpleProgram1()
 
 if __name__=='__main__':
     main()
