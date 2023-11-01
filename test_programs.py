@@ -75,44 +75,38 @@ def simpleProgram1():
 
 # Simple Test: Singular input & nested branches
 def simpleProgram2():
-  dict_obj = keyValuePairs()
+  test_list = [] 
   i = 0
-  num_samples = 1000
+  num_samples = 10000
   while i < num_samples:
-    dict_obj.key = i
-    if (i < 750):
-      dict_obj.value = "1"
-      if (i == 0):
-        dict_obj.value += "1"
-        dict_obj.value += "/"
-        dict_obj.add(dict_obj.key, dict_obj.value)
-      if (i > 0 & i < 600):
-        dict_obj.value += "1"
-        if (i < 400):
-          dict_obj.value += "1"
-          if (i > 50 and i < 299):
-            dict_obj.value += "1"
-            dict_obj.value += "/"
+    dict_obj = {}
+    val = random.randint(0,1000)
+    if (val < 750):
+      dict_obj[val] = "1;"
+      if (val == 0):
+        dict_obj[val] += "1"
+      if (val > 0 & val < 600):
+        dict_obj[val] += "1;"
+        if (val < 400):
+          dict_obj[val] += "1;"
+          if (val > 50 and val < 299):
+            dict_obj[val] += "1"
           else:
-            dict_obj.value += "0"
-            dict_obj.value += "/"
+            dict_obj[val] += "0"
         else:
-            dict_obj.value += "0"
-            dict_obj.value += "/"
-        dict_obj.add(dict_obj.key, dict_obj.value)
-
+            dict_obj[val] += "0"
       else:
-        dict_obj.value += "0"
-        dict_obj.value += "/"
-        dict_obj.add(dict_obj.key, dict_obj.value)
-
+        dict_obj[val] += "0"
       i+=1
-
     else:
-      dict_obj.value = "0"
-      dict_obj.value += "/"
-      dict_obj.add(dict_obj.key, dict_obj.value)
+      dict_obj[val] = "0"
       i += 1
+    test_list.append(dict_obj)
+
+  with open('test_case2.csv','w') as f:
+    for i in test_list:
+        f.write(str(list(i.keys())[0]) + "," + str(list(i.values())[0]))
+        f.write("\n")
 
   #for key in dict_obj:
     #print(key, ":", dict_obj[key])
@@ -187,8 +181,9 @@ def simpleProgram4():
     #print(key, ":", dict_obj[key])
 
 def main():
-    simpleProgram()
-    simpleProgram1()
+    #simpleProgram()
+    #simpleProgram1()
+    simpleProgram2()
 
 if __name__=='__main__':
     main()
