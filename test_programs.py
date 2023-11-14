@@ -113,31 +113,63 @@ def simpleProgram2():
 
 # Simple Programs: while loops
 def simpleProgram3():
-  dict_obj = keyValuePairs()
+  test_list = []
   i = 0
-  num_samples = 10
+  num_samples = 10000
   while i < num_samples:
-    dict_obj.key = i #sample index
+    dict_obj = {}
+    val = random.randint(0,1000)
     k = 0
     while k < 50:  #change this while loop condition for more complex loop behaviors
       if (k == 0) : #treat this branch as an initializer for the dictionary value
-          dict_obj.value = "1"
+          dict_obj[val] = "1"
           k += 1
 
-      dict_obj.value += "1" #keep count of branch taken/re-entering the while loop
+      dict_obj[val] += "1" #keep count of branch taken/re-entering the while loop
       k += 1
 
-    dict_obj.value += "0" #exit component
-    dict_obj.value += "/"
-    dict_obj.add(dict_obj.key, dict_obj.value)
+    dict_obj[val] += "0" #exit component
+    test_list.append(dict_obj)
     i += 1  #increment to next sample
+
+  with open('test_case3.csv','w') as f:
+    for i in test_list:
+      f.write(str(list(i.keys())[0]) + "," + str(list(i.values())[0]))
+      f.write("\n")
 
   #for key in dict_obj:
     #print(key, ":", dict_obj[key])
 
-# Simple Programs: Nested Branches
-
+# Simple Program 4: Multiple inputs
 def simpleProgram4():
+  #dict_obj = keyValuePairs()
+  test_list = []
+  i = 0
+  num_samples = 10000
+  while i < num_samples:
+    dict_obj = {}
+    key = (i, i+1, i+2) #multiple inputs mock
+    dict_obj[key] = ""
+    if (i < 100):
+      dict_obj[key] += "1"
+    if (i + 1 > 90):
+      dict_obj[key] += "1"
+    if (i + 2 < 500):
+      dict_obj[key] += "1"
+    dict_obj[key] += "0" #exit component
+    test_list.append(dict_obj)
+    i += 1  #increment to next sample
+
+  #for key in dict_obj:
+    #print(key, ":", dict_obj[key])
+  with open('test_case4.csv','w') as f:
+    for i in test_list:
+        f.write(str(list(i.keys())[0]) + "," + str(list(i.values())[0]))
+        f.write("\n")
+
+
+# Simple Programs: Nested Branches
+def simpleProgram5():
   print("test")
   dict_obj = keyValuePairs()
   i = 0
@@ -183,7 +215,10 @@ def simpleProgram4():
 def main():
     #simpleProgram()
     #simpleProgram1()
-    simpleProgram2()
+    #simpleProgram2()
+    simpleProgram3()
+    simpleProgram4()
+
 
 if __name__=='__main__':
     main()
