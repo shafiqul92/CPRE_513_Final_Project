@@ -170,45 +170,52 @@ def simpleProgram4():
 
 # Simple Programs: Nested Branches
 def simpleProgram5():
-  print("test")
-  dict_obj = keyValuePairs()
+  #print("test")
+  #dict_obj = keyValuePairs()
+  test_list = []
   i = 0
-  num_samples = 10
+  num_samples = 10000
   while i < num_samples:
-    dict_obj.key = i
-    value = random.randint(0,100)
-    if value > 50:
-      dict_obj.value = "1"
-      if value > 75:
-        dict_obj.value += "1"
-        if value > 90:
-            dict_obj.value += "1"
+    dict_obj = {}
+    #dict_obj.key = i
+    val = random.randint(0,100)
+    if val > 50:
+      dict_obj[val] = "1"
+      if val > 75:
+        dict_obj[val] += "1"
+        if val > 90:
+            dict_obj[val] += "1"
         else:
-            dict_obj.value += "0"
+            dict_obj[val] += "0"
       else:
-        dict_obj.value += "0"
-        if value > 60:
-          dict_obj.value += "1"
+        dict_obj[val] += "0"
+        if val > 60:
+          dict_obj[val] += "1"
         else:
-            dict_obj.value += "0"
+            dict_obj[val] += "0"
     else:
-      dict_obj.value = "0"
-      if value > 25:
-        dict_obj.value += "1"
-        if value > 40:
-          dict_obj.value += "1"
+      dict_obj[val] = "0"
+      if val > 25:
+        dict_obj[val] += "1"
+        if val > 40:
+          dict_obj[val] += "1"
         else:
-            dict_obj.value += "0"
+            dict_obj[val] += "0"
       else:
-        dict_obj.value += "0"
-        if value > 10:
-          dict_obj.value += "1"
+        dict_obj[val] += "0"
+        if val > 10:
+          dict_obj[val] += "1"
         else:
-          dict_obj.value += "0"  
-    dict_obj.value += "/"
-    dict_obj.add(dict_obj.key, dict_obj.value)
+          dict_obj[val] += "0"  
+    #dict_obj.value += "/"
+    #dict_obj.add(dict_obj.key, dict_obj.value)
+    test_list.append(dict_obj)
     i += 1  #increment to next sample
 
+  with open('test_case5.csv','w') as f:
+    for i in test_list:
+        f.write(str(list(i.keys())[0]) + "," + str(list(i.values())[0]))
+        f.write("\n")
   #for key in dict_obj:
     #print(key, ":", dict_obj[key])
 
@@ -216,8 +223,9 @@ def main():
     #simpleProgram()
     #simpleProgram1()
     #simpleProgram2()
-    simpleProgram3()
-    simpleProgram4()
+    #simpleProgram3()
+    #simpleProgram4()
+    simpleProgram5()
 
 
 if __name__=='__main__':
