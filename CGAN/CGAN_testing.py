@@ -23,7 +23,6 @@ def Generate_test_cases(path_min, path_max, input_min, input_max):
     return test_cases_df
 
 def find_max_and_min_of_training_data_and_lengths():
-    model_path = input("Give the path to the model you'd like to test: \n")
     training_path = input("Give the path to the data you used to train this model: \n")
     path_min = np.inf
     path_max = -np.inf
@@ -35,7 +34,7 @@ def find_max_and_min_of_training_data_and_lengths():
     input_length = 0
     for i, item in enumerate(paths_df['Path']):
         paths_df['Path'][i] = item.replace(';', '')
-        paths_df['Path'][i] = [int(i) for i in paths_df['Path'][i]]
+        paths_df['Path'][i] = [int(j) for j in paths_df['Path'][i]]
         if len(paths_df['Path'][i]) > path_length:
             path_length = len(paths_df['Path'][i])
     for i, item in enumerate(paths_df['Path']):
@@ -49,21 +48,22 @@ def find_max_and_min_of_training_data_and_lengths():
                 path_max = j
     for i, item in enumerate(paths_df['Input']):
         paths_df['Input'][i] = item.split(';')
-        paths_df['Input'][i] = [float(i) for i in paths_df['Input'][i]]
+        paths_df['Input'][i] = [float(j) for j in paths_df['Input'][i]]
         if len(paths_df['Input'][i]) > input_length:
-            input_length = len(paths_df['Path'][i])
+            input_length = len(paths_df['Input'][i])
         for j in paths_df['Input'][i]:
             if j < input_min:
                 input_min = j
             if j > input_max:
                 input_max = j
     
-    return model_path, path_min, path_max, input_min, input_max, path_length, input_length
+    return path_min, path_max, input_min, input_max, path_length, input_length
                 
 if __name__ == "__main__":
     
+    model_path = input("Give the path to the model you'd like to test: \n")
     
-    model_path, path_min, path_max, input_min, input_max, path_length, input_length = find_max_and_min_of_training_data_and_lengths()
+    path_min, path_max, input_min, input_max, path_length, input_length = find_max_and_min_of_training_data_and_lengths()
     
     Test_case_generator = Generator(path_length=path_length, input_size=input_length)
     
