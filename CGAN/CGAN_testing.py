@@ -4,10 +4,6 @@ import torch
 import numpy as np
 import pandas as pd
 
-Test_case_generator = Generator()
-
-Test_case_generator.eval()
-
 def Generate_test_cases(path_min, path_max, input_min, input_max):
     test_case_file_path = input("Give the path to a file of test cases for the model: \n")
     output_file_name = input("What would you like the output file for these test cases to be called? \n")
@@ -26,9 +22,8 @@ def Generate_test_cases(path_min, path_max, input_min, input_max):
     test_cases_df.to_csv(output_file_name, index=False)
     return test_cases_df
 
-def find_max_and_min_of_training_data():
+def find_max_and_min_of_training_data_and_lengths():
     model_path = input("Give the path to the model you'd like to test: \n")
-    Test_case_generator.load_state_dict(torch.load(model_path), strict=True)
     training_path = input("Give the path to the data you used to train this model: \n")
     path_min = np.inf
     path_max = -np.inf
@@ -36,6 +31,8 @@ def find_max_and_min_of_training_data():
     input_max = -np.inf
     path_length = -np.inf
     paths_df = pd.read_csv(training_path, dtype=str)
+    path_length = 0
+    input_length = 0
     for i, item in enumerate(paths_df['Path']):
         paths_df['Path'][i] = item.replace(';', '')
         paths_df['Path'][i] = [int(i) for i in paths_df['Path'][i]]
@@ -53,15 +50,25 @@ def find_max_and_min_of_training_data():
     for i, item in enumerate(paths_df['Input']):
         paths_df['Input'][i] = item.split(';')
         paths_df['Input'][i] = [float(i) for i in paths_df['Input'][i]]
+        if len(paths_df['Input'][i]) > input_length:
+            input_length = len(paths_df['Path'][i])
         for j in paths_df['Input'][i]:
             if j < input_min:
                 input_min = j
             if j > input_max:
                 input_max = j
     
-    return path_min, path_max, input_min, input_max
-                
+    return model_path, path_min, path_max, input_min, input_max, path_length, input_length
                 
 if __name__ == "__main__":
-    path_min, path_max, input_min, input_max = find_max_and_min_of_training_data()
+    
+    
+    model_path, path_min, path_max, input_min, input_max, path_length, input_length = find_max_and_min_of_training_data_and_lengths()
+    
+    Test_case_generator = Generator(path_length=path_length, input_size=input_length)
+    
+    Test_case_generator.load_state_dict(torch.load(model_path), strict=True)
+
+    Test_case_generator.eval()
+    
     Generate_test_cases(path_min, path_max, input_min, input_max)
