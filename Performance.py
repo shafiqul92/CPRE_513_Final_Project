@@ -44,8 +44,8 @@ def calculate_correct_path_percentage(actual_path, output_path):
 
 # Read the CSV files for output and actual test cases
 # Replace the paths below with the actual file paths
-output_df = pd.read_csv('/path/to/output.csv')  # Replace with the actual path to the output CSV
-actual_df = pd.read_csv('/path/to/test_case0.csv')  # Replace with the actual path to the test case CSV
+output_df = pd.read_csv(r'C:\Users\Michael\Desktop\Classes\CPRE 513\CPRE 513 Final Project\Output')  # Replace with the actual path to the output CSV
+actual_df = pd.read_csv(r'C:\Users\Michael\Desktop\Classes\CPRE 513\CPRE 513 Final Project\training_csv\test_case0.csv')  # Replace with the actual path to the test case CSV
 
 # Convert the 'Input' column in actual_df to integers for comparison
 actual_df['Input'] = actual_df['Input'].astype(int)
