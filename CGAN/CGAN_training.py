@@ -8,7 +8,7 @@ pd.options.mode.chained_assignment = None
 
 #Data architecture
 input_length = 1
-batch_size = 128
+batch_size = 32
 path_length = 1
 path_instances_unscaled = []
 path_instances_scaled = []
@@ -22,7 +22,7 @@ classifier_layer_size = [256, 512, 1024, 512, 256]
 generator_dropout_rate = .2
 
 # Training
-epochs = 10
+epochs = 100
 learning_rate = 1e-4
 
 class Path_data(Dataset):
@@ -174,7 +174,7 @@ def classifier_train_step(batch_size, classifier, generator, c_optimizer, criter
 
 if __name__ == "__main__":
     
-    train_data_path = r'C:\Users\Michael\Desktop\Classes\CPRE 513\CPRE 513 Final Project\training_csv\test_case0.csv'
+    train_data_path = r'C:\Users\Michael\Desktop\Classes\CPRE 513\CPRE 513 Final Project\Training CSVs\Buggy_test_case.csv'
     print('Train data path:', train_data_path)
     
     dataset = Path_data(train_data_path)
@@ -226,4 +226,3 @@ if __name__ == "__main__":
             print('Sample paths: ' + str(scaled_paths))
             print('Sample inputs: ' + str(sample_inputs))
             torch.save(generator.state_dict(), 'Generator_parameters.pt')
-            torch.save(classifier.state_dict(), 'Classifier_parameters.pt')
