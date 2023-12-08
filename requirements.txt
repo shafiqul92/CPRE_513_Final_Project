@@ -1,35 +1,55 @@
-Bottleneck @ file:///C:/ci_311/bottleneck_1676500016583/work
-Brotli @ file:///C:/ci_311/brotli-split_1676435766766/work
-certifi @ file:///C:/b/abs_36eb5mzhph/croot/certifi_1690232276943/work/certifi
-cffi @ file:///C:/ci_311/cffi_1676423759166/work
-charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
-cryptography @ file:///C:/b/abs_f4do8t8jfs/croot/cryptography_1694444424531/work
-filelock @ file:///C:/ci_311/filelock_1676427284139/work
-idna @ file:///C:/ci_311/idna_1676424932545/work
-Jinja2 @ file:///C:/ci_311/jinja2_1676424968965/work
-MarkupSafe @ file:///C:/ci_311/markupsafe_1676424152318/work
-mkl-fft @ file:///C:/b/abs_19i1y8ykas/croot/mkl_fft_1695058226480/work
-mkl-random @ file:///C:/b/abs_edwkj1_o69/croot/mkl_random_1695059866750/work
+astor==0.8.1
+blinker==1.7.0
+Bottleneck==1.3.5
+Brotli==1.0.9
+certifi==2023.7.22
+cffi==1.15.1
+charset-normalizer==2.0.4
+click==8.1.7
+colorama==0.4.6
+cryptography==41.0.3
+filelock==3.9.0
+Flask==3.0.0
+graphviz==0.20.1
+idna==3.4
+itsdangerous==2.1.2
+jedi==0.19.1
+Jinja2==3.1.2
+MarkupSafe==2.1.1
+mkl-fft==1.3.8
+mkl-random==1.2.4
 mkl-service==2.4.0
-mpmath @ file:///C:/b/abs_7833jrbiox/croot/mpmath_1690848321154/work
-networkx @ file:///C:/b/abs_e6gi1go5op/croot/networkx_1690562046966/work
-numexpr @ file:///C:/b/abs_5fucrty5dc/croot/numexpr_1696515448831/work
-numpy @ file:///C:/b/abs_9fu2cs2527/croot/numpy_and_numpy_base_1695830496596/work/dist/numpy-1.26.0-cp311-cp311-win_amd64.whl#sha256=ebb3a554edce1131a5b1b0d4afa8f980929b1226bebc4eb515ac2e29b44186d2
-pandas @ file:///C:/b/abs_81b3npjrl8/croot/pandas_1697477219064/work/dist/pandas-2.1.1-cp311-cp311-win_amd64.whl#sha256=1732f3b07ba52119320a2b01aa09f2627f6258176e492b728daf60efb4f4d78e
-Pillow @ file:///C:/b/abs_20ztcm8lgk/croot/pillow_1696580089746/work
-pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
-pyOpenSSL @ file:///C:/b/abs_08f38zyck4/croot/pyopenssl_1690225407403/work
-PySocks @ file:///C:/ci_311/pysocks_1676425991111/work
-python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
-pytz @ file:///C:/b/abs_19q3ljkez4/croot/pytz_1695131651401/work
-PyYAML @ file:///C:/b/abs_782o3mbw7z/croot/pyyaml_1698096085010/work
-requests @ file:///C:/b/abs_316c2inijk/croot/requests_1690400295842/work
-six @ file:///tmp/build/80754af9/six_1644875935023/work
-sympy @ file:///C:/ci_311_rebuilds/sympy_1679009400182/work
+mpmath==1.3.0
+networkx==3.1
+numexpr==2.8.7
+numpy==1.26.0
+packaging==23.2
+pandas==2.1.1
+parso==0.8.3
+Pillow==10.0.1
+pip==23.3
+pudb==2023.1
+py2cfg==0.7.3
+pycparser==2.21
+Pygments==2.17.2
+pyOpenSSL==23.2.0
+PySocks==1.7.1
+python-dateutil==2.8.2
+pytz==2023.3.post1
+PyYAML==6.0.1
+requests==2.31.0
+setuptools==68.0.0
+six==1.16.0
+sympy==1.11.1
 torch==2.1.0
 torchaudio==2.1.0
 torchvision==0.16.0
-typing_extensions @ file:///C:/b/abs_213vg2cd1l/croot/typing_extensions_1690297804941/work
-tzdata @ file:///croot/python-tzdata_1690578112552/work
-urllib3 @ file:///C:/b/abs_9cmlsrm3ys/croot/urllib3_1698257595508/work
-win-inet-pton @ file:///C:/ci_311/win_inet_pton_1676425458225/work
+typing_extensions==4.7.1
+tzdata==2023.3
+urllib3==1.26.18
+urwid==2.3.4
+urwid-readline==0.13
+websocket-server==0.6.4
+Werkzeug==3.0.1
+wheel==0.41.2
+win-inet-pton==1.1.0
