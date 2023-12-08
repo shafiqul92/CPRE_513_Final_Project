@@ -10,10 +10,13 @@ def buggy_if_statement_test_harness(input_csv):
     
 
 def buggy_if_statement(input_value):
-    if input_value > 500 and input_value < 1000:
-        random_number = random.randint(0, 1000)
-        print(100/random_number)
-        path_dict.loc[len(path_dict.index)] = [input_value, 1]
+    if input_value > 0 and input_value < 500:
+        if input_value > 250:
+            random_number = random.randint(0, 1000)
+            print(100/random_number)
+            path_dict.loc[len(path_dict.index)] = [input_value, '1;1']
+        else:
+            path_dict.loc[len(path_dict.index)] = [input_value, '1;0']
     else:
         path_dict.loc[len(path_dict.index)] = [input_value, 0]
         
@@ -28,9 +31,9 @@ if __name__ == "__main__":
     elif input_choice == "2":
         random.seed(datetime.now().timestamp())
         for i in range(100):
-            input = random.randint(0, 1000)
+            input = random.randint(1, 1000)
             buggy_if_statement(input)
-        path_dict.to_csv('Training CSVs/Buggy_test_case.csv', index=False)
+        path_dict.to_csv('Training Data/Buggy_test_case.csv', index=False)
     
 
 

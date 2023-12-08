@@ -19,7 +19,7 @@ def Generate_test_cases(path_min, path_max, input_min, input_max):
         x = Test_case_generator(latent_space, test_case_path)
         x= [float(i) * (input_max - input_min) + input_min for i in x[0:]]
         test_cases_df["Input"][i] = str(x).replace('[', '').replace(']','').replace(',', ';')
-    test_cases_df.to_csv(output_file_name, index=False)
+    test_cases_df.to_csv(f'{output_file_name}.csv', index=False)
     return test_cases_df
 
 def find_max_and_min_of_training_data_and_lengths():

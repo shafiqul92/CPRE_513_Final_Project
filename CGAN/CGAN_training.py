@@ -196,7 +196,7 @@ if __name__ == "__main__":
     epochs = input('Please enter the number of epochs you\'d like to train this generator for: \n')
     epochs = int(epochs)
     
-    generator_name = input('What would you like to name this generator?: \n')
+    generator_name = input('What would you like to name this generator? (Don\'t include an extension): \n')
     
     dataset = Path_data(train_data_path)
     data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
