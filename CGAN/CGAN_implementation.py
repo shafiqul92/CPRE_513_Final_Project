@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 
 def Generate_test_cases(path_min, path_max, input_min, input_max):
-    test_case_file_path = input("Give the path to a file of test cases for the model: \n")
-    output_file_name = input("What would you like the output file for these test cases to be called? \n")
+    test_case_file_path = input("Give the path to a file of path requests for the model: \n")
+    output_file_name = input("What would you like the output file for these path requests to be called? \n")
     test_cases_df = pd.read_csv(test_case_file_path, dtype=str)
     test_cases_df.insert(0, "Input", np.nan) 
     test_cases_df = test_cases_df.astype({"Input": str})
@@ -61,7 +61,7 @@ def find_max_and_min_of_training_data_and_lengths():
                 
 if __name__ == "__main__":
     
-    model_path = input("Give the path to the model you'd like to test: \n")
+    model_path = input("Give the path to the model you'd like to use to generate inputs: \n")
     
     path_min, path_max, input_min, input_max, path_length, input_length = find_max_and_min_of_training_data_and_lengths()
     

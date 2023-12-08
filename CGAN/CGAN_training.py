@@ -22,7 +22,7 @@ classifier_layer_size = [256, 512, 1024, 512, 256]
 generator_dropout_rate = .2
 
 # Training
-epochs = 100
+epochs = 0
 learning_rate = 1e-4
 
 class Path_data(Dataset):
@@ -184,11 +184,17 @@ def classifier_train_step(batch_size, classifier, generator, c_optimizer, criter
 
 if __name__ == "__main__":
     
+    train_data_path = input('Please enter the path to the data you\'d like to use to train this model:\n')
+    
+    training_data = pd.read_csv(train_data_path, dtype=str)
+    
+    print(f'This training data has {training_data.index.size} entries.')
+    
     batch_size = input('Please enter the batch size for training this generator: \n')
     batch_size = int(batch_size)
     
-    train_data_path = input('Please enter the path to the training data: \n')
-    print('Train data path:', train_data_path)
+    epochs = input('Please enter the number of epochs you\'d like to train this generator for: \n')
+    epochs = int(epochs)
     
     generator_name = input('What would you like to name this generator?: \n')
     
