@@ -7,9 +7,9 @@ from torch.utils.data import Dataset
 pd.options.mode.chained_assignment = None
 
 #Data architecture
-input_length = 1
-batch_size = 32
-path_length = 1
+input_length = 0
+batch_size = 0
+path_length = 0
 path_instances_unscaled = []
 path_instances_scaled = []
 input_min = np.inf
@@ -31,12 +31,18 @@ class Path_data(Dataset):
         global input_min
         global path_instances_unscaled
         global path_instances_scaled
+        global path_length
+        global input_length
         self.path_min = np.inf
         self.path_max = -np.inf
         paths_df = pd.read_csv(data_path, dtype=str)
         for i, item in enumerate(paths_df['Path']):
             paths_df['Path'][i] = item.replace(';', '')
             paths_df['Path'][i] = [int(i) for i in paths_df['Path'][i]]
+        for i, item in enumerate(paths_df['Path']):
+            if path_length < len(paths_df['Path'][i]):
+                path_length = len(paths_df['Path'][i])
+        for i, item in enumerate(paths_df['Path']):
             if len(paths_df['Path'][i]) < path_length:
                 for j in range(path_length - len(paths_df['Path'][i])):
                     paths_df['Path'][i].append(-1)
@@ -51,6 +57,10 @@ class Path_data(Dataset):
         for i, item in enumerate(paths_df['Input']):
             paths_df['Input'][i] = item.split(';')
             paths_df['Input'][i] = [float(i) for i in paths_df['Input'][i]]
+        for i, item in enumerate(paths_df['Input']):
+            if input_length < len(paths_df['Input'][i]):
+                input_length = len(paths_df['Input'][i])
+        for i, item in enumerate(paths_df['Input']):
             for j in paths_df['Input'][i]:
                 if j < input_min:
                     input_min = j
@@ -174,8 +184,13 @@ def classifier_train_step(batch_size, classifier, generator, c_optimizer, criter
 
 if __name__ == "__main__":
     
-    train_data_path = r'C:\Users\Michael\Desktop\Classes\CPRE 513\CPRE 513 Final Project\Training CSVs\Buggy_test_case.csv'
+    batch_size = input('Please enter the batch size for training this generator: \n')
+    batch_size = int(batch_size)
+    
+    train_data_path = input('Please enter the path to the training data: \n')
     print('Train data path:', train_data_path)
+    
+    generator_name = input('What would you like to name this generator?: \n')
     
     dataset = Path_data(train_data_path)
     data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
@@ -225,4 +240,4 @@ if __name__ == "__main__":
                 scaled_paths.append(path_instances_scaled[index])
             print('Sample paths: ' + str(scaled_paths))
             print('Sample inputs: ' + str(sample_inputs))
-            torch.save(generator.state_dict(), 'Generator_parameters.pt')
+            torch.save(generator.state_dict(), f'{generator_name}.pt')
