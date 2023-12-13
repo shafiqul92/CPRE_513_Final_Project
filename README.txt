@@ -65,7 +65,7 @@ This README will guide you through how to use our CGAN to detect a bug in the Bu
 
 2) You're running this script on Windows.
 
-4) You're running on AMD64 architecture. This may also work on x64, we don't know, we al have Windows computers.
+4) You're running on AMD64 architecture. This may also work on x64, we don't know, we all have Windows computers.
 This does not work on arm64.
 
 5) You have venv, Python, and pip installed.
